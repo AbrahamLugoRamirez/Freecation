@@ -42,32 +42,37 @@ function App() {
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+    <div className="mx-auto max-w-7xl px-3 py-6 sm:px-6 sm:py-8">
+      <header className="mb-6 px-1 sm:mb-8">
+        <h1 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl">
           🌴 Freecation <span className="text-emerald-600">Colombia</span>
         </h1>
-        <p className="mt-2 text-slate-600">
+        <p className="mt-2 text-sm text-slate-600 sm:text-base">
           Dinos cuántos días de vacaciones tienes y te mostramos cuándo tomarlos para aprovechar al máximo los
           puentes festivos.
         </p>
       </header>
 
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
-        <div className="space-y-6">
+      {/* En celular: datos → resultados → calendario → festivos. En escritorio los festivos van al lado. */}
+      <div className="grid gap-4 sm:gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
+        <div className="space-y-4 sm:space-y-6">
           <SettingsForm settings={settings} years={YEARS} onChange={updateSettings} />
-          <ResultsList results={results} selectedIndex={selectedIndex} onSelect={setSelectedIndex} />
+          <ResultsList
+            results={results}
+            classifier={classifier}
+            selectedIndex={selectedIndex}
+            onSelect={setSelectedIndex}
+          />
         </div>
-        <aside>
+        <aside className="order-last lg:order-none">
           <HolidayList year={settings.year} />
         </aside>
+        <div className="lg:col-span-2">
+          <YearCalendar year={settings.year} classifier={classifier} selected={results[selectedIndex]} />
+        </div>
       </div>
 
-      <div className="mt-6">
-        <YearCalendar year={settings.year} classifier={classifier} selected={results[selectedIndex]} />
-      </div>
-
-      <footer className="mt-8 text-center text-xs text-slate-400">
+      <footer className="mt-8 px-1 text-center text-xs text-slate-400">
         Festivos calculados según la Ley 51 de 1983 (Ley Emiliani) y el calendario de Semana Santa.
       </footer>
     </div>

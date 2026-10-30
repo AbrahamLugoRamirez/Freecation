@@ -46,10 +46,12 @@ const shortFormatter = new Intl.DateTimeFormat('es-CO', {
   timeZone: 'UTC',
 })
 
+const capitalize = (text: string) => text.charAt(0).toUpperCase() + text.slice(1)
+
 export function formatLong(date: Date): string {
-  return longFormatter.format(date)
+  return capitalize(longFormatter.format(date))
 }
 
 export function formatShort(date: Date): string {
-  return shortFormatter.format(date)
+  return capitalize(shortFormatter.format(date))
 }

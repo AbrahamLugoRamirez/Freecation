@@ -3,3 +3,13 @@
 body {
   @apply bg-slate-50 text-slate-800 antialiased;
 }
+
+/* Ocultar flechas nativas del input numérico (se usan botones − y +) */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}
