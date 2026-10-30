@@ -14,7 +14,7 @@ interface Props {
 
 // Lunes primero, como se acostumbra en Colombia
 const WEEK_ORDER = [1, 2, 3, 4, 5, 6, 0]
-const MAX_DAYS = 60
+const MAX_DAYS = 30
 
 export function SettingsForm({ settings, years, onChange }: Props) {
   const toggleDay = (day: number) => {
